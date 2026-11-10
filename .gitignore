@@ -2,13 +2,13 @@ node_modules/
 .next/
 out/
 dist/
+tmp/
 .env*
 !.env.example
 .bol/
 npm-debug.log*
 
 # Local credentials and generated data
-.bol/
 
 # Python environments and caches
 **/.venv/
@@ -18,7 +18,6 @@ npm-debug.log*
 
 # Local agent instructions and private skills
 .agents/
-AGENTS.md
 AGENTS.md.txt
 
 # Local sessions, generated media, and cloned dependency repository

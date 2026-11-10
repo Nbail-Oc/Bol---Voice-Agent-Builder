@@ -1,37 +1,61 @@
 # Bol
 
-Bol is a local, no-code builder for browser voice agents. OpenCode helps prepare a draft, and the shared Gnani/Pipecat runtime runs saved agent configurations.
+Bol helps you turn a plain-language idea into a browser-based voice agent you can review, edit, and try. Describe the job, shape the agent with a conversational builder, then run the saved configuration through Gnani and Pipecat.
 
-## Demo video
+## Demo
 
-<!-- Add your video here -->
+[Watch the Bol demo video](https://github.com/user-attachments/assets/1ea4311a-2267-449d-8491-8404ae074132), or use the player below.
 
-## Start locally
+![](https://github.com/user-attachments/assets/1ea4311a-2267-449d-8491-8404ae074132)
 
-Requirements: Node.js 20.9+, OpenCode CLI v2.2.5, Python 3.11+, and a connected OpenCode model provider.
+## Solution pitch
+
+- [Read the one-page solution pitch (PDF)](output/pdf/bol-solution-pitch.pdf)
+- [Read the accessible text version](docs/bol-solution-pitch.md)
+
+GitHub opens the PDF as a rendered document. The Markdown version provides the same pitch as page text for readers who prefer it or use assistive technology.
+
+## What Bol does
+
+- Turn a description into a draft agent with a role, tasks, language, greeting, boundaries, and conversation flow.
+- Ask focused follow-up questions when an important detail is missing.
+- Review and edit the draft before saving it as an agent.
+- Add pasted knowledge or researched public information, then start a browser voice session.
+
+Bol saves agent configurations and chat history locally. OpenCode helps create agents. Gnani handles speech recognition and speech generation, while Pipecat connects the browser voice session to the runtime model.
+
+## Run locally
+
+You need Node.js 20.9 or newer, the OpenCode CLI with a model provider configured, Python 3.11 or newer, and API keys for Gnani and Groq. The app uses OpenRouter for its default OpenCode model. See the [OpenCode setup guide](https://opencode.ai/docs/) to install the CLI and connect a provider.
+
+Install the web app:
 
 ```powershell
 npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`. OpenCode runs locally on port 4096. Connect a web-search provider in OpenCode if you want public research while creating agents.
+Open <http://localhost:3000>. The development script starts the local OpenCode server and the web app.
 
-## Create and run agents
+To run voice agents, install the Python runtime in a second terminal:
 
-1. Open **Create an agent** and describe what it should do.
-2. Answer any focused questions. OpenCode can research relevant public sources and preserves their titles and URLs.
-3. Review the draft in chat, request corrections if needed, then click **Create agent**.
-4. Open the saved agent to edit it, or click **Start voice** and allow browser microphone access.
+```powershell
+cd voice_runtime
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+Copy-Item .env.example .env
+```
 
-Bol stores agent configurations in `.bol/bol.db` and seeds the existing tea-shop example as a demo agent on first launch. Saving a draft does not create an agent; the approval button does. One browser voice session can run at a time.
+Add your `GNANI_API_KEY` and `GROQ_API_KEY` to `voice_runtime/.env`, then restart the app. Keep these keys private. The app stores agent data on your computer, but OpenCode and the selected speech and model providers receive the prompts and context needed to respond.
 
-Knowledge accepts pasted text and curated public research up to 20,000 characters. This release excludes phone calls, document uploads, full RAG, bookings, payments, and other external actions.
+## Current scope
 
-## Voice credentials
+Each agent uses one configured language. Bol runs one browser voice session at a time. This build does not place phone calls or host agents online, and it does not support document uploads, bookings, or payments.
 
-Set `GNANI_API_KEY` and `GROQ_API_KEY` in `voice_runtime/.env` (copy `.env.example` if needed). Credentials stay local. Saved agents share the Pipecat/Gnani STT/TTS pipeline and use Groq `openai/gpt-oss-20b`.
+## Project files
 
-## OpenCode integration
-
-Project files under `.opencode/` define the `bol-builder` agent, the `voice-agent-creator` skill, and a narrow `save_agent_draft` tool. The builder cannot use shell or general file editing. Bol APIs include `/api/agents`, `/api/agents/:agentId`, `/api/agent-drafts`, and `/api/agents/:agentId/voice-session`.
+- `.opencode/` contains the Bol builder, its creation skill, and the draft-saving tool.
+- `app/` and `components/` contain the Next.js interface and API routes.
+- `voice_runtime/` contains the Pipecat/Gnani voice runtime.
+- `lib/` contains agent configuration, local storage, and OpenCode integration.
