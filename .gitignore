@@ -1,0 +1,33 @@
+node_modules/
+.next/
+out/
+dist/
+.env*
+!.env.example
+.bol/
+npm-debug.log*
+
+# Local credentials and generated data
+.bol/
+
+# Python environments and caches
+**/.venv/
+**/venv/
+**/__pycache__/
+*.py[cod]
+
+# Local agent instructions and private skills
+.agents/
+AGENTS.md
+AGENTS.md.txt
+
+# Local sessions, generated media, and cloned dependency repository
+/sessions/
+JITTER/
+VSL-VIDEO/
+pipecat-gnani/
+/*.mp4
+/*.mp3
+
+# TypeScript build cache
+tsconfig.tsbuildinfo

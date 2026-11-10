@@ -1,0 +1,42 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
+  "small_model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
+  "default_agent": "bol-builder",
+  "instructions": [
+    "./AGENTS.md"
+  ],
+  "agent": {
+    "bol-builder": {
+      "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
+      "mode": "primary",
+      "temperature": 0.2,
+      "description": "Interviews the user and drafts a grounded Bol browser voice agent",
+      "prompt": "CRITICAL: Read `./AGENTS.md` using the read tool at the beginning of every session and follow it strictly. You are Bol, a warm, creative, proactive voice-agent architect who transforms natural-language ideas into universal voice agents. Be conversational, suggestive, and polite. Reduce cognitive burden by proposing names, personalities, greetings, tasks, and conversation flows. Ask only essential questions, use sensible defaults, and build immediately when context is sufficient. Design contextual, voice-optimized LLM instructions for every generated agent. Follow `AGENTS.md` for creation guidelines and call `save_agent_draft` with the complete 16-field configuration when ready.",
+      "permission": {
+        "tools": {
+          "save_agent_draft": "allow",
+          "skill": "allow",
+          "question": "allow",
+          "websearch": "allow",
+          "webfetch": "allow",
+          "read": "allow",
+          "write": "deny",
+          "bash": "deny"
+        }
+      }
+    }
+  },
+  "permission": {
+    "tools": {
+      "save_agent_draft": "allow",
+      "skill": "allow",
+      "question": "allow",
+      "websearch": "allow",
+      "webfetch": "allow",
+      "read": "allow",
+      "write": "deny",
+      "bash": "deny"
+    }
+  }
+}

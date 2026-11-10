@@ -1,0 +1,14 @@
+"use client";
+import Link from "next/link";
+import { useState } from "react";
+export default function AgentEditor({initialAgent}) {
+ const [agent,setAgent]=useState(initialAgent),[error,setError]=useState(""),[busy,setBusy]=useState(false);
+ if(!agent)return <main className="home"><p>Agent not found.</p><Link href="/">Back to agents</Link></main>;
+ async function save(e){e.preventDefault();setBusy(true);setError("");try{const r=await fetch(`/api/agents/${agent.id}`,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(agent)}),d=await r.json();if(!r.ok)throw Error(d.error);setAgent(d.agent);}catch(e){setError(e.message)}finally{setBusy(false)}}
+ async function remove(){if(!confirm(`Delete ${agent.name}?`))return;const r=await fetch(`/api/agents/${agent.id}`,{method:"DELETE"});if(r.ok)location.href="/";}
+ return <main className="editor-page"><Link href="/" className="back-link">← Agents</Link><header className="dashboard-head"><div><div className="eyebrow" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><img src="/LOGO.png" alt="Bol" style={{ width: '14px', height: '14px', objectFit: 'contain' }} />Agent settings</div><h1>{agent.name}</h1></div><Link className="button" href={`/agents/${agent.id}/voice`}>Start voice</Link></header><form className="agent-form" onSubmit={save}>
+ {[["name","Name"],["purpose","Purpose"],["audience","Audience"],["language","Language (e.g. en-IN)"],["greeting","Greeting"],["voice","Synthetic Voice Model"],["personality","Personality"],["goal","Goal and success"],["fallback","Fallback"],["escalation","Escalation"]].map(([key,label])=><label key={key}>{label}<input value={agent[key]||""} onChange={e=>setAgent({...agent,[key]:e.target.value})}/></label>)}
+ <label>Interaction Mode<select value={agent.interactionType||"agent_first"} onChange={e=>setAgent({...agent,interactionType:e.target.value})}><option value="agent_first">1. Agent greets automatically first</option><option value="user_first">2. User speaks first, then agent responds and greets</option></select></label>
+ {[["tasks","Supported tasks"],["conversationFlow","Conversation flow"],["groundRules","Ground rules"],["boundaries","Boundaries"]].map(([key,label])=><label key={key}>{label}<textarea rows="3" value={(agent[key]||[]).join("\n")} onChange={e=>setAgent({...agent,[key]:e.target.value.split("\n")})}/></label>)}
+ <label>Knowledge (20,000 characters max)<textarea rows="8" value={agent.knowledgeText||""} onChange={e=>setAgent({...agent,knowledgeText:e.target.value})}/></label><div className="agent-actions"><button className="button" disabled={busy}>{busy?"Saving…":"Save changes"}</button><button type="button" className="button danger" onClick={remove}>Delete agent</button></div>{error&&<p className="bol-error">{error}</p>}</form></main>
+}
