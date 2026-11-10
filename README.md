@@ -11,9 +11,7 @@
 
 ## Demo
 
-<p align="center"><a href="https://github.com/user-attachments/assets/1ea4311a-2267-449d-8491-8404ae074132">Watch the Bol demo video</a></p>
-
-![](https://github.com/user-attachments/assets/1ea4311a-2267-449d-8491-8404ae074132)
+https://github.com/user-attachments/assets/1ea4311a-2267-449d-8491-8404ae074132
 
 ---
 
@@ -21,7 +19,8 @@
 
 > **[One-page solution pitch (accessible PDF)](output/pdf/bol-solution-pitch.pdf)**
 >
-> [Read the accessible text version](docs/bol-solution-pitch.md)
+> <img width="1157" height="1638" alt="final-pitch-1" src="https://github.com/user-attachments/assets/49c8cbe4-a6bd-4858-ac5d-2ea2cfe881e4" />
+
 
 ---
 
