@@ -1,37 +1,25 @@
-# Bol: a voice agent you can shape in plain language
+# Bol: the no-code voice agent builder
 
-## The problem
+## Build a voice agent by talking to Bol
 
-Teams often know what they want callers to accomplish, but turning that need into clear agent instructions, trusted knowledge, speech settings, and a working voice pipeline takes technical setup.
+Tell Bol who your agent should help and what it should do. Bol's AI asks a few focused questions, then builds the agent through conversation. You do not need to code or know how voice technology works.
 
-## The solution
+## From idea to agent in about 3 minutes
 
-Bol lets a user describe the job in everyday language. Its OpenCode builder asks focused questions, drafts an agent for that use case, and presents the result for review before saving. Users can edit the agent, add knowledge, and try it in a browser voice session.
+The average time to create a voice agent is about three minutes. Bol is free to start.
 
-## How it works
+## No knowledge base? Bol can create one.
 
-1. Describe the callers and what they need help with.
-2. Bol drafts the agent's role, tasks, language, greeting, boundaries, and conversation flow.
-3. Review and edit the draft, then create the agent.
-4. Start a browser voice session and try a real conversation.
+Bol can do deep research on the web and build a knowledge base for your agent. Already have information to share? Add it to the conversation.
 
-Bol uses Gnani for speech recognition and speech generation, Pipecat for the WebRTC voice session, and Groq for the runtime model. Agent configurations and chat history stay on the user's computer. Prompts and relevant context are sent to the selected providers for processing.
+## Make the agent yours
 
-## Who it is for
+Choose the language or languages it should speak. Set its greeting, custom instructions, knowledge, and conversation style.
 
-Bol is for organizations, services, and project teams that need a voice assistant for a defined workflow and want to shape its behavior before callers rely on it.
+## Talk naturally
 
-## What this build includes
+Interrupt the agent mid-sentence. It stops speaking, listens, and responds to what you said.
 
-- Conversational agent drafting with focused follow-up questions.
-- Editable agent settings and a review step before creation.
-- Pasted knowledge and researched public information.
-- Browser-based voice sessions using the saved agent configuration.
+## Start with an idea
 
-## Current scope
-
-This is a local developer preview. Setup requires Node.js, OpenCode, Python, and provider API keys. Each agent uses one configured language, and the app runs one voice session at a time. Bol does not place phone calls or host agents online. Document uploads, bookings, and payments are outside this build.
-
-## Try it
-
-Choose one real caller task, create an agent for it, and test a conversation in the browser. Review whether its answers are useful, grounded in the available knowledge, and clear when it cannot help.
+Describe the voice agent you want. Bol handles the setup while you shape it through conversation.

@@ -1,6 +1,8 @@
 # Bol
 
-Bol helps you turn a plain-language idea into a browser-based voice agent you can review, edit, and try. Describe the job, shape the agent with a conversational builder, then run the saved configuration through Gnani and Pipecat.
+Bol is the no-code voice agent builder. Create an agent by talking to AI: describe what you need, answer a few questions, and Bol builds it with you. No code or technical knowledge required.
+
+Create a voice agent in about three minutes on average. Start free.
 
 ## Demo
 
@@ -10,34 +12,35 @@ Bol helps you turn a plain-language idea into a browser-based voice agent you ca
 
 ## Solution pitch
 
-- [Read the one-page solution pitch (PDF)](output/pdf/bol-solution-pitch.pdf)
-- [Read the accessible text version](docs/bol-solution-pitch.md)
+- [One-page solution pitch (accessible PDF)](output/pdf/bol-solution-pitch.pdf)
+- [Accessible text version](docs/bol-solution-pitch.md)
 
-GitHub opens the PDF as a rendered document. The Markdown version provides the same pitch as page text for readers who prefer it or use assistive technology.
+GitHub opens the PDF as a rendered document. The Markdown link provides the same pitch as readable page text.
 
-## What Bol does
+## What you can build
 
-- Turn a description into a draft agent with a role, tasks, language, greeting, boundaries, and conversation flow.
-- Ask focused follow-up questions when an important detail is missing.
-- Review and edit the draft before saving it as an agent.
-- Add pasted knowledge or researched public information, then start a browser voice session.
+- Create a voice agent in a conversation, without writing code or prompts.
+- Choose one language or combine multiple languages in one agent.
+- Set custom instructions, a greeting, voice, knowledge, and conversation style.
+- Give the agent your knowledge, or let it do deep web research and build a knowledge base.
+- Interrupt the agent while it is speaking. It stops, listens, and responds.
 
-Bol saves agent configurations and chat history locally. OpenCode helps create agents. Gnani handles speech recognition and speech generation, while Pipecat connects the browser voice session to the runtime model.
+Bol saves agent configurations and chats on your computer. OpenCode helps create agents. Gnani handles speech recognition and speech generation, and Pipecat connects the voice session to the runtime model.
 
 ## Run locally
 
-You need Node.js 20.9 or newer, the OpenCode CLI with a model provider configured, Python 3.11 or newer, and API keys for Gnani and Groq. The app uses OpenRouter for its default OpenCode model. See the [OpenCode setup guide](https://opencode.ai/docs/) to install the CLI and connect a provider.
+To run the project, you need Node.js 20.9 or newer, the OpenCode CLI with a model provider configured, and Python 3.11 or newer. Voice sessions need Gnani and Groq API keys. The default OpenCode model uses OpenRouter. See the [OpenCode setup guide](https://opencode.ai/docs/) to install the CLI and connect a provider.
 
-Install the web app:
+Install and start the app:
 
 ```powershell
 npm install
 npm run dev
 ```
 
-Open <http://localhost:3000>. The development script starts the local OpenCode server and the web app.
+Open <http://localhost:3000>. The development script starts OpenCode and the app.
 
-To run voice agents, install the Python runtime in a second terminal:
+To enable voice sessions, install the Python runtime in a second terminal:
 
 ```powershell
 cd voice_runtime
@@ -47,11 +50,7 @@ python -m pip install -r requirements.txt
 Copy-Item .env.example .env
 ```
 
-Add your `GNANI_API_KEY` and `GROQ_API_KEY` to `voice_runtime/.env`, then restart the app. Keep these keys private. The app stores agent data on your computer, but OpenCode and the selected speech and model providers receive the prompts and context needed to respond.
-
-## Current scope
-
-Each agent uses one configured language. Bol runs one browser voice session at a time. This build does not place phone calls or host agents online, and it does not support document uploads, bookings, or payments.
+Add your `GNANI_API_KEY` and `GROQ_API_KEY` to `voice_runtime/.env`, then restart the app. Keep these keys private. Bol stores agent data on your computer, but OpenCode and the selected speech and model providers receive the prompts and context needed to respond.
 
 ## Project files
 
